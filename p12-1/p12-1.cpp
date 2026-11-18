@@ -10,10 +10,10 @@
 
 using namespace std;
 
-// Symbolic constants
-const int COLUMNS = 4;      // Seats A, B, C, D
-const int ROWS = 13;        // Rows 1 through 13
-const int TOTAL_SEATS = 50; // 12 * 4 + 2 = 50 seats
+//constants
+const int COLUMNS = 4;      
+const int ROWS = 13;        
+const int TOTAL_SEATS = 50; 
 const int ERROR = -1;
 const char OCCUPIED = 'X';
 const char EMPTY_SLOT = ' ';
@@ -25,13 +25,11 @@ void displaySeatColumn(char seats[][ROWS], int column);
 void displaySeatingChart(char seats[][ROWS]);
 
 int main() {
-    // Initialize the 2D seating chart: seats[column][row]
     char seats[COLUMNS][ROWS];
     char seatLetters[COLUMNS] = { 'A', 'B', 'C', 'D' };
 
     for (int col = 0; col < COLUMNS; col++) {
         for (int row = 0; row < ROWS; row++) {
-            // Row 13 (index 12) only has seats A (0) and B (1)
             if (row == ROWS - 1 && (col == 2 || col == 3)) {
                 seats[col][row] = EMPTY_SLOT;
             }
@@ -60,12 +58,10 @@ int main() {
         int rowIdx = ERROR;
         int colIdx = ERROR;
 
-        // Ensure input has at least 2 characters (e.g., "1A") before parsing
         if (input.length() >= 2) {
             char seatChar = toupper(input.back());
             string rowPart = input.substr(0, input.length() - 1);
 
-            // Check that all preceding characters are digits
             bool isDigits = true;
             for (char c : rowPart) {
                 if (!isdigit(static_cast<unsigned char>(c))) {
@@ -100,9 +96,7 @@ int main() {
     }
 }
 
-// findRowIndex: given user input, returns appropriate row index into arrays.
-// @param thisRow - integer indicating row selected by the user
-// @return appropriate index into 2-D array if the specified row is valid, ERROR otherwise
+
 int findRowIndex(int thisRow) {
     if (thisRow >= 1 && thisRow <= ROWS) {
         return thisRow - 1;
@@ -110,9 +104,7 @@ int findRowIndex(int thisRow) {
     return ERROR;
 }
 
-// findSeatIndex: given user input, returns appropriate column index into seating chart array.
-// @param thisSeat - character indicating selected seat within row
-// @return appropriate index into 2-D array if the specified seat is valid, ERROR otherwise
+
 int findSeatIndex(char thisSeat) {
     switch (toupper(thisSeat)) {
     case 'A': return 0;
