@@ -118,7 +118,7 @@ int findSeatIndex(char thisSeat) {
 
 void displaySeatColumn(char seats[][ROWS], int column) {
     for (int row = 0; row < ROWS; row++) {
-        // Avoid trailing space on rows C and D where row 13 does not exist
+        
         if (row == ROWS - 1 && seats[column][row] == EMPTY_SLOT) {
             break;
         }
